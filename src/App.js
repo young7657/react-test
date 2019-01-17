@@ -7,6 +7,7 @@ class App extends Component {
     return (
       <div className="App">
       	<Clock />
+      	<Toggle />
       </div>
     );
   }
@@ -43,6 +44,38 @@ class Clock extends Component {
 				<h1>Hello, World</h1>
 				<h2>It is {this.state.date.toLocaleTimeString()}</h2>
 			</div>
+		)
+	}
+}
+
+class Toggle extends Component {
+	constructor(props) {
+		super(props);
+
+		this.state = {isToggleOn: true};
+
+		this.handleClick = this.handleClick.bind(this);
+	}
+
+	handleClick() {
+		// this.setState({
+		// 	isToggleOn: !this.state.isToggleOn
+		// });
+		this.setState(prevState => ({
+			isToggleOn: !prevState.isToggleOn
+		}))
+		// this.setState(function(prev) {
+		// 	return {
+		// 		isToggleOn: !prev.isToggleOn
+		// 	}
+		// })
+	}
+
+	render() {
+		return (
+			<button onClick={this.handleClick}>
+				{this.state.isToggleOn ? 'ON' : 'OFF'}
+			</button>
 		)
 	}
 }
